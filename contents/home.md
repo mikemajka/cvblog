@@ -20,4 +20,4 @@ ASIC Design Concepts
 
 PCB Design, Prototyping & Testing
 
-C/C++ & Verilog Programmingff
+C/C++ & Verilog Programming
