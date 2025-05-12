@@ -1,4 +1,4 @@
-[![XX](https://img.shields.io/badge/XX-github-blue?logo=github)](https://github.com/mikemajka)
+[![XX](https://img.shields.io/badge/mikemajka-github-blue?logo=github)](https://github.com/mikemajka)
 
 Currently an undergraduate Electrical and Computer Engineering student from the University fo Toronto.
 
