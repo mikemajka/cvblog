@@ -1,7 +1,7 @@
 [![XX](https://img.shields.io/badge/XX-github-blue?logo=github)](https://github.com/XX)
 
 Currently an undergraduate Electrical and Computer Engineering student from the University fo Toronto.
----
+
 #### Email  
 <code>minghan.wei2017sk@gmail.com</code>  
 
