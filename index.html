@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Academic Webpage" />
-    <meta name="author" content="yixin0313" />
+    <meta name="description" content="Minghan Wei - Electrical & Computer Engineering, University of Toronto. Hardware design, embedded systems and robotics." />
+    <meta name="author" content="Minghan Wei" />
     <title id="title"></title>
 
     <!-- Icon -->
@@ -28,6 +28,91 @@
     <link type="text/css" href="static/css/styles.css" rel="stylesheet" />
     <link type="text/css" href="static/css/main.css" rel="stylesheet" />
 
+    <!-- Experience / project showcase styles -->
+    <style>
+        :root {
+            --accent: #3a46d4;
+            --accent-soft: rgba(58, 70, 212, 0.08);
+            --ink: #1f2330;
+            --muted: #6b7080;
+            --line: #e3e5ee;
+            --card: #ffffff;
+        }
+
+        /* No headshot: give the About section normal breathing room */
+        #about { padding-top: 4rem; }
+
+        /* Quick stats strip under the intro */
+        .stats { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0 0.5rem; }
+        .stat {
+            flex: 1 1 140px; background: var(--card); border: 1px solid var(--line);
+            border-radius: 10px; padding: 0.9rem 1.1rem;
+        }
+        .stat b { display: block; font-size: 1.5rem; color: var(--accent); line-height: 1.2; }
+        .stat span { font-size: 0.85rem; color: var(--muted); }
+
+        /* Timeline */
+        .timeline { position: relative; margin: 1.5rem 0 0; padding-left: 1.75rem; }
+        .timeline::before {
+            content: ""; position: absolute; left: 0.4rem; top: 0.4rem; bottom: 0.4rem;
+            width: 2px; background: var(--line);
+        }
+        .xp { position: relative; margin-bottom: 2rem; }
+        .xp::before {
+            content: ""; position: absolute; left: -1.75rem; top: 1.45rem;
+            width: 0.95rem; height: 0.95rem; border-radius: 50%;
+            background: var(--card); border: 3px solid var(--accent);
+        }
+        .xp-card {
+            background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+            padding: 1.4rem 1.6rem; box-shadow: 0 2px 10px rgba(20, 24, 50, 0.04);
+            transition: box-shadow .2s, transform .2s;
+        }
+        .xp-card:hover { box-shadow: 0 8px 24px rgba(20, 24, 50, 0.08); transform: translateY(-2px); }
+        .xp-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem; }
+        .xp-head h3 { margin: 0; font-size: 1.3rem; color: var(--ink); }
+        .xp-date {
+            font-size: 0.85rem; font-weight: 600; color: var(--accent);
+            background: var(--accent-soft); border-radius: 999px; padding: 0.15rem 0.7rem; white-space: nowrap;
+        }
+        .xp-org { color: var(--muted); font-weight: 600; margin: 0.3rem 0 0.8rem; }
+        .xp-org i { margin-right: 0.3rem; }
+        .xp-card ul { margin-bottom: 0.9rem; padding-left: 1.2rem; }
+        .xp-card li { margin-bottom: 0.35rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tag {
+            font-size: 0.78rem; font-weight: 600; color: var(--ink);
+            border: 1px solid var(--line); border-radius: 6px; padding: 0.15rem 0.55rem; background: #f7f8fc;
+        }
+
+        /* Media inside cards */
+        .media-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+        .media-item { flex: 1 1 260px; }
+        .media-item img, .media-item video { width: 100%; border-radius: 8px; display: block; }
+        .media-caption { font-size: 0.82rem; color: var(--muted); margin-top: 0.35rem; }
+
+        /* Projects as a card grid */
+        .proj-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+        .proj-grid .xp-card h3 { font-size: 1.15rem; margin-bottom: 0; }
+        .proj-grid .xp-head { margin-bottom: 0.7rem; }
+        .proj-grid .xp-card.wide { grid-column: 1 / -1; }
+        .gallery { display: flex; gap: 0.75rem; margin-top: 1.2rem; align-items: flex-start; }
+        .gallery figure { min-width: 0; }
+        @media (max-width: 768px) { .gallery { flex-direction: column; } .gallery figure { flex: none !important; width: 100%; } }
+        .gallery figure { margin: 0; }
+        .proj-grid .gallery img { width: 100%; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #000; }
+        .gallery a { display: block; }
+        .proj-grid figure { margin: 0.8rem 0 0; }
+        .proj-grid figure img { width: 100%; max-width: 520px; border-radius: 8px; }
+        .proj-grid figcaption { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; }
+
+        @media (max-width: 576px) {
+            .xp-card { padding: 1.1rem 1.1rem; }
+            .timeline { padding-left: 1.4rem; }
+            .xp::before { left: -1.4rem; }
+        }
+    </style>
+
     <!-- Bootstrap core JS-->
     <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
 
@@ -39,34 +124,18 @@
         // See https://docs.mathjax.org/en/latest/index.html for more details.
         MathJax = {
             tex: {
-                packages: {},              // extensions to use
-                inlineMath: [              // start/end delimiter pairs for in-line math
-                    ['$', '$'],
-                    ['\\(', '\\)']
-                ],
-                displayMath: [             // start/end delimiter pairs for display math
-                    ['$$', '$$'],
-                    ['\\[', '\\]']
-                ],
-                processEscapes: false,      // use \$ to produce a literal dollar sign
-                processEnvironments: true, // process \begin{xxx}...\end{xxx} outside math mode
-                processRefs: true,         // process \ref{...} outside of math mode
-                digits: /^(?:[0-9]+(?:\{,\}[0-9]{3})*(?:\.[0-9]*)?|\.[0-9]+)/,    // pattern for recognizing numbers
-                tags: 'all',              // or 'ams' or 'all'
-                tagSide: 'right',          // side for \tag macros
-                tagIndent: '0.8em',        // amount to indent tags
-                useLabelIds: true,         // use label name rather than tag for ids
-                maxMacros: 10000,          // maximum number of macro substitutions per expression
-                maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
-                // baseURL:                   // URL for use with links to tags (when there is a <base> tag in effect)
-                // (document.getElementsByTagName('base').length === 0) ? '' : String(document.location).replace(/#.*$/, ''),
-                formatError:               // function called when TeX syntax errors occur
-                    (jax, err) => jax.formatError(err)
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: false,
+                processEnvironments: true,
+                processRefs: true,
+                tags: 'all',
+                tagSide: 'right',
+                tagIndent: '0.8em',
+                useLabelIds: true
             }
         };
     </script>
-    <script type="text/javascript" id="MathJax-script"
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -81,7 +150,6 @@
     <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
         <div class="container px-5">
             <a id="page-top-title" class="navbar-brand fw-bold" href="#page-top"></a>
-            <!-- <a href="#page-top"><img src="static/assets/img/CUMT_LOGO.svg" style="width: 11rem;"></a> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 MENU
@@ -112,14 +180,6 @@
         </div>
     </section>
     <!-- Top Section -->
-
-    <!-- Photo -->
-    <div class="container px-5">
-        <div id="avatar">
-            <img class="shadow" src="static/assets/img/photo.png">
-        </div>
-    </div>
-    <!-- Photo -->
 
     <!-- About -->
     <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="about">
@@ -154,10 +214,16 @@
     </section>
     <!-- Projects -->
 
+    <!--
+        Note: the sections below are parsed as Markdown. HTML blocks must not contain
+        blank lines, otherwise Markdown treats the indented lines that follow as code.
+    -->
+
     <script id="about-source" type="text/plain">
 [![GitHub](https://img.shields.io/badge/mikemajka-github-blue?logo=github)](https://github.com/mikemajka)
 
-An undergraduate Electrical and Computer Engineering student at the University of Toronto with a strong interest in hardware design, embedded systems, and robotics.
+Electrical and Computer Engineering undergraduate at the **University of Toronto**, currently a Hardware Digital Design Intern at **Ericsson Canada**. I design and bring up hardware end to end: from schematic and PCB layout to signal-integrity validation, FPGA logic and analog/RF front ends.
+
 
 #### Contact
 <code>minghan.wei2017sk@gmail.com</code>
@@ -166,82 +232,88 @@ An undergraduate Electrical and Computer Engineering student at the University o
 - ASIC Design
 - Hardware Design, Prototyping & Testing
 - Analog & Digital Signal Processing
-
     </script>
 
     <script id="experience-source" type="text/plain">
-### **Hardware Digital Design Intern**  
-**May. 2026 – Present | Ericsson Canada**  
-- Worked on the design and verification of digital hardware components for next-generation radio units.
-- Developed PRBS and eye-diagram testbenches to validate 16G JESD204C signal integrity and timing performance.
-- Simulated current density flow in PCB with PowerDC, collaborated with layout designers for optimized routing.
-- Evaulated clock synthesizers from vendors and implemented clock distribution networks for telecomm systems.
-- Maintained IRU schematics in Cadence Allegro, executing ECOs, component swaps to support hardware revisions
-
-### **Hardware Developer**  
-**Sept. 2024 – Present | University of Toronto RoboSoccer**  
-- Architected electrical hardware for humanoid robots: requirement analysi, schematic capture, and layout routing
-- Designed power tree for operating 23 Quasi-Direct Drive motors, static switch driver, buck converters, LDOs, and ferrite beads
-- Integrated multi-protocol communication networks: configuring CAN2.0A/B for motor actuation, SPI for high speed master-slaves MCU synchronization, I2C for acquiring real-time IMUs data, and USB for MCU-Jetson data/command streaming
-- Currently upgrading MCU-Nvidia Jetson interconnect from USB 1.0 to 100BASE-TX Ethernet for high throughput of sensor data and commands streaming 
-
+<div class="timeline">
+<div class="xp"><div class="xp-card">
+<div class="xp-head"><h3>Hardware Digital Design Intern</h3><span class="xp-date">May 2026 – Present</span></div>
+<div class="xp-org"><i class="bi bi-building"></i>Ericsson Canada</div>
+<ul>
+<li>Designed, updated and validated schematics for telecom radio platforms.</li>
+<li>Benchmarked clock synthesizer ICs on phase jitter performance at 491.52 MHz.</li>
+<li>Performed power rail analysis on PCB layout in Cadence, covering current density and load transients to meet PDN margins.</li>
+<li>Developed PRBS loopback on the JESD204C link between RFIC and FPGA, and tuned SerDes transceiver parameters through eye-diagram analysis to minimize bit error rate.</li>
+</ul>
+<div class="tags"><span class="tag">DCDC POL Layout</span><span class="tag">Schematic design</span><span class="tag">Close-in Phase Noise</span><span class="tag">PDN analysis</span><span class="tag">Cadence Allegro</span></div>
+</div></div>
+<div class="xp"><div class="xp-card">
+<div class="xp-head"><h3>Hardware Member</h3><span class="xp-date">Sept 2024 – Present</span></div>
+<div class="xp-org"><i class="bi bi-cpu"></i>University of Toronto RoboSoccer</div>
+<ul>
+<li>Architected the PCB of a humanoid robotics system for power delivery and command/data telemetry.</li>
+<li>Designed the power tree from a 24–48 V battery input to peripheral rails, using buck-converter POLs, LDOs and kill-switch functionality, for 20+ QDD actuators drawing up to 600 W peak.</li>
+<li>Configured CAN 2.0A/B for motor actuation, SPI for high-speed master–slave MCU synchronization, I²C for real-time IMU data acquisition, and UART for debugging.</li>
+</ul>
 <div class="media-row">
-    <div class="media-item">
-        <a href="https://www.youtube.com/watch?v=bINm34lQ1Jg&t=6s" target="_blank" rel="noopener noreferrer" class="media-link">
-            <img src="https://img.youtube.com/vi/bINm34lQ1Jg/maxresdefault.jpg" alt="2025 Robocup Qualifying Video">
-        </a>
-    </div>
-    <div class="media-item">
-        <div class="video-figure">
-            <video controls poster="static/assets/img/roboleg-thumb.jpg">
-                <source src="static/assets/video/roboleg.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
+<div class="media-item">
+<a href="https://www.youtube.com/watch?v=bINm34lQ1Jg&t=6s" target="_blank" rel="noopener noreferrer"><img src="https://img.youtube.com/vi/bINm34lQ1Jg/maxresdefault.jpg" alt="2025 RoboCup qualifying video"></a>
+<div class="media-caption">2025 RoboCup qualifying video (opens on YouTube)</div>
+<a href="static/assets/img/robosoccer-pcb.jpg" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:1rem"><img src="static/assets/img/rbnew.jpg" alt="Bare RoboSoccer power and communication PCB"></a>
+<div class="media-caption">Robot power and communication board, first fab</div>
 </div>
-<div class="media-captions">
-    <div class="media-caption">2025 Robocup Qualifying Video (opens on YouTube)</div>
-    <div class="media-caption">2026 leg demonstration</div>
+<div class="media-item">
+<video controls poster="static/assets/img/roboleg-thumb.jpg"><source src="static/assets/video/roboleg.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+<div class="media-caption">2026 leg demonstration</div>
 </div>
-
-
-
-
-
-
+</div>
+</div></div>
+</div>
     </script>
 
     <script id="projects-source" type="text/plain">
-### **65nm CMOS Operational Amplifier**
+<div class="proj-grid">
+<div class="xp-card wide">
+<div class="xp-head"><h3>SPI-to-4-CAN SoC</h3><span class="xp-date">Sept 2026</span></div>
+<ul>
+<li>Designed a custom SPI-to-CAN bridge SoC on a Lattice MachXO2 FPGA, built around a Wishbone bus controller, fanning one SPI host out to four CAN channels.</li>
+<li>Described asynchronous FIFO buffers and robust CDC synchronizers in Verilog to manage high-throughput data transfer between clock domains.</li>
+</ul>
+<div class="tags"><span class="tag">Verilog HDL</span><span class="tag">Lattice MachXO2</span><span class="tag">Wishbone</span><span class="tag">Async FIFO</span><span class="tag">CDC</span><span class="tag">SPI</span><span class="tag">CAN</span></div>
+<div class="gallery">
+<figure style="flex: 1.333 1 0"><a href="static/assets/img/spi2can-scope.jpg" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-scope.jpg" alt="Oscilloscope capture of decoded SPI MOSI and MISO frames"></a><figcaption>Bench capture: decoded SPI MOSI/MISO transactions into the bridge</figcaption></figure>
+<figure style="flex: 2.044 1 0"><a href="static/assets/img/spi2can-route.png" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-route.png" alt="Routed physical view of the FPGA design"></a><figcaption>Post place-and-route physical view</figcaption></figure>
+<figure style="flex: 2.049 1 0"><a href="static/assets/img/spi2can-floorplan.png" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-floorplan.png" alt="Floorplan view of the MachXO2 device"></a><figcaption>MachXO2 floorplan utilization</figcaption></figure>
+</div>
+</div>
+<div class="xp-card">
+<div class="xp-head"><h3>65nm CMOS Operational Amplifier</h3><span class="xp-date">Mar 2026</span></div>
+<ul>
+<li>Designed a fab-ready, DRC/LVS-clean two-stage op-amp in Cadence Virtuoso on the TSMC 65nm node.</li>
+<li>Post-layout: 1.81 GHz (−3 dB) bandwidth, 66.2° phase margin and 17.6 dB gain margin at 86 µW.</li>
+</ul>
+<div class="tags"><span class="tag">Cadence Virtuoso</span><span class="tag">Analog IC</span><span class="tag">DRC/LVS</span></div>
+<figure><img src="static/assets/img/or.jpeg" alt="Layout screenshot"><figcaption>4-input OR layout</figcaption></figure>
+</div>
+<div class="xp-card">
+<div class="xp-head"><h3>3D Raycasting Engine on FPGA</h3><span class="xp-date">Apr 2025</span></div>
+<ul>
+<li>Built a lightweight real-time raycasting engine in Verilog for the Altera DE1-SoC.</li>
+<li>Implemented the 3D rendering algorithm with dynamic perspective movement and collision detection.</li>
+<li>Integrated a PS/2 keyboard controller for input and the audio codec for in-game sound effects.</li>
+</ul>
 
-- Designed a fab-ready, DRC/LVS-clean 65nm two-stage OpAmp in Cadence Virtuoso
-- Achieved post-layout results: 1.81Ghz (-3dB) bandwidth, 66.2° phase margin, and 17.6dB gain margin at 86 µW
+</div>
+<div class="xp-card">
+<div class="xp-head"><h3>SDR Analog Front End</h3><span class="xp-date">Apr 2025</span></div>
+<ul>
+<li>Designed the analog front end of a superheterodyne software-defined radio receiver from discrete components.</li>
+<li>Built a band-pass filter, LNA, low-pass filter and BJT Gilbert-cell mixer for an 8–16 MHz LO, producing 44 kHz I/Q outputs.</li>
+</ul>
 
-<figure>
-    <img src="static/assets/img/or.jpeg" alt="Project screenshot">
-    <figcaption>4 input OR.</figcaption>
-</figure>
-
----
-### **3D Raycasting Engine on FPGA**
-
-- Developed a lightweight real-time raycasting engine in Verilog for Altera DE1-SOC
-- Implemented rendering algorithm for 3D graphics and handle dynamic perspective movement and collision detection 
-- Integrated hardware peripherals including a PS/2 keyboard controller for user input and audio codec module to trigger sound effects for in-game events
-
----
-
-### **SDR AFE**
-
-- Designed an analog front end for a superheterodyne receiver of a software-defined radio with common components
--Built bandpass filter, LNA, low-pass filter and a Gilbert Cell mixer with BJTs for 8 to 16 MHz LO to achieve a 44 kHz output of in-phase and quadrature components
-
-
-<figure>
-    <img src="static/assets/img/background.jpg" alt="Project screenshot">
-    <figcaption>1st PCB</figcaption>
-</figure>
+<figure><img src="static/assets/img/background.jpg" alt="SDR PCB"><figcaption>First PCB revision</figcaption></figure>
+</div>
+</div>
     </script>
 
     <!-- Footer-->
