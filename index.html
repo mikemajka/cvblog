@@ -259,13 +259,23 @@ Electrical and Computer Engineering undergraduate at the **University of Toronto
 <div class="media-item">
 <a href="https://www.youtube.com/watch?v=bINm34lQ1Jg&t=6s" target="_blank" rel="noopener noreferrer"><img src="https://img.youtube.com/vi/bINm34lQ1Jg/maxresdefault.jpg" alt="2025 RoboCup qualifying video"></a>
 <div class="media-caption">2025 RoboCup qualifying video (opens on YouTube)</div>
-<a href="static/assets/img/robosoccer-pcb.jpg" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:1rem"><img src="static/assets/img/rbnew.jpg" alt="Bare RoboSoccer power and communication PCB"></a>
+<a href="static/assets/img/rbnew.jpg" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:1rem"><img src="static/assets/img/rbnew.jpg" alt="Bare RoboSoccer power and communication PCB"></a>
 <div class="media-caption">Robot power and communication board, first fab</div>
 </div>
 <div class="media-item">
 <video controls poster="static/assets/img/roboleg-thumb.jpg"><source src="static/assets/video/roboleg.mp4" type="video/mp4">Your browser does not support the video tag.</video>
 <div class="media-caption">2026 leg demonstration</div>
+
 </div>
+<ul>
+<li><b>WindBorne</b>: Powering 24 Direct Drive motors is dangrous, espeically when considering their peak power consumption (4000W+). Even with trained RL policies and firmware limits, the system remains challenging to manage safely.
+    which is why an additional layer of pure analog clamping is implemented. Voltage read from a current sense resistor is compared to a solid 2.5V reference. When Vsense exceeds the reference, monitor IC trigers FET driver to enter
+    a skip state which forces 4 Power FETs into linear mode, effectively clamping the current while sending a signal to the MCU for motor shutdowon. While long linear mode operation stresses the FETs, a completely shutoff is enforced
+    if condition remains for more than 5 ms, set by a RC timer.
+
+</li>
+</ul>
+
 </div>
 </div></div>
 </div>
@@ -276,7 +286,8 @@ Electrical and Computer Engineering undergraduate at the **University of Toronto
 <div class="xp-card wide">
 <div class="xp-head"><h3>SPI-to-4-CAN SoC</h3><span class="xp-date">Sept 2026</span></div>
 <ul>
-<li>Designed a custom SPI-to-CAN bridge SoC on a Lattice MachXO2 FPGA, built around a Wishbone bus controller, fanning one SPI host out to four CAN channels.</li>
+<li><i><p style="font-family:'Courier New'">Why? this will serve as an alternative to having control SPI-to-CAN transievers, like the Microchip MCP2515 which is quite pin demanding on the SPI Master and require additional components. </p></i></li>
+<li>Designed a custom SPI-to-CAN bridge SoC on a Lattice MachXO2 FPGA, built around a Wishbone bus controller, fanning one SPI host out to four 4 channels.</li>
 <li>Described asynchronous FIFO buffers and robust CDC synchronizers in Verilog to manage high-throughput data transfer between clock domains.</li>
 </ul>
 <div class="tags"><span class="tag">Verilog HDL</span><span class="tag">Lattice MachXO2</span><span class="tag">Wishbone</span><span class="tag">Async FIFO</span><span class="tag">CDC</span><span class="tag">SPI</span><span class="tag">CAN</span></div>
