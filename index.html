@@ -1,345 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Minghan Wei - Electrical & Computer Engineering, University of Toronto. Hardware design, embedded systems and robotics." />
-    <meta name="author" content="Minghan Wei" />
-    <title id="title"></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Minghan Wei - Electrical Engineering, University of Toronto. Hardware design, FPGA, embedded systems and robotics.">
+<meta name="author" content="Minghan Wei">
+<title>Minghan Wei | Personal Website</title>
+<link rel="icon" type="image/x-icon" href="static/assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #16181d;
+    --text: #3b3f48;
+    --muted: #6b7180;
+    --line: #e7e8ec;
+    --soft: #f6f7f9;
+    --accent: #2f5bd3;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  img, video { display: block; max-width: 100%; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
-    <!-- Icon -->
-    <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  nav .brand { font-weight: 700; color: var(--ink); }
+  nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+  nav ul a { color: var(--muted); font-size: 14px; font-weight: 500; }
+  nav ul a:hover { color: var(--ink); text-decoration: none; }
 
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  /* Intro */
+  header.intro { padding: 72px 0 40px; }
+  .intro h1 { font-size: 40px; line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); margin: 0; }
+  .intro h1 .cn { font-weight: 500; color: var(--muted); font-size: 0.6em; margin-left: 10px; letter-spacing: 0; }
+  .intro .role { font-size: 18px; color: var(--ink); margin: 10px 0 16px; font-weight: 500; }
+  .intro p { max-width: 680px; margin: 0 0 20px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links a {
+    font-size: 14px; font-weight: 500; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px;
+  }
+  .links a:hover { border-color: var(--ink); text-decoration: none; }
+  .interests { margin-top: 20px; font-size: 14px; color: var(--muted); }
+  .interests b { color: var(--ink); font-weight: 600; }
 
-    <!-- Google fonts-->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap"
-        rel="stylesheet" />
+  /* Sections */
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 28px;
+  }
 
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link type="text/css" href="static/css/styles.css" rel="stylesheet" />
-    <link type="text/css" href="static/css/main.css" rel="stylesheet" />
+  /* Entries */
+  .entry + .entry { margin-top: 48px; }
+  .entry-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 16px; }
+  .entry h3 { font-size: 19px; color: var(--ink); margin: 0; letter-spacing: -0.01em; }
+  .date { font-size: 14px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .org { color: var(--ink); font-weight: 500; margin-top: 2px; }
+  .entry ul { margin: 12px 0 0; padding-left: 20px; }
+  .entry li { margin: 6px 0; }
+  .entry li::marker { color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tags span { font-size: 12.5px; color: var(--text); background: var(--soft); border-radius: 6px; padding: 3px 9px; }
 
-    <!-- Experience / project showcase styles -->
-    <style>
-        :root {
-            --accent: #3a46d4;
-            --accent-soft: rgba(58, 70, 212, 0.08);
-            --ink: #1f2330;
-            --muted: #6b7080;
-            --line: #e3e5ee;
-            --card: #ffffff;
-        }
+  .note {
+    margin-top: 16px; padding: 14px 16px; background: var(--soft);
+    border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 15px;
+  }
+  .note b { color: var(--ink); }
 
-        /* No headshot: give the About section normal breathing room */
-        #about { padding-top: 4rem; }
+  /* Media */
+  figure { margin: 0; }
+  figure img, figure video { width: 100%; border-radius: 8px; border: 1px solid var(--line); background: #000; }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .media-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; align-items: start; }
+  .media-2 .stack { display: grid; gap: 16px; }
+  .gallery { display: flex; gap: 12px; margin-top: 20px; align-items: flex-start; }
+  .gallery figure { min-width: 0; }
+  .single { margin-top: 20px; max-width: 520px; }
+  .play { position: relative; display: block; }
+  .play img { aspect-ratio: 16 / 9; object-fit: cover; }
+  .play::after {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px;
+    border-radius: 50%; background: rgba(0,0,0,0.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7v10l8-5z' fill='white'/%3E%3C/svg%3E") center/32px no-repeat;
+  }
 
-        /* Quick stats strip under the intro */
-        .stats { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0 0.5rem; }
-        .stat {
-            flex: 1 1 140px; background: var(--card); border: 1px solid var(--line);
-            border-radius: 10px; padding: 0.9rem 1.1rem;
-        }
-        .stat b { display: block; font-size: 1.5rem; color: var(--accent); line-height: 1.2; }
-        .stat span { font-size: 0.85rem; color: var(--muted); }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; font-size: 13px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
-        /* Timeline */
-        .timeline { position: relative; margin: 1.5rem 0 0; padding-left: 1.75rem; }
-        .timeline::before {
-            content: ""; position: absolute; left: 0.4rem; top: 0.4rem; bottom: 0.4rem;
-            width: 2px; background: var(--line);
-        }
-        .xp { position: relative; margin-bottom: 2rem; }
-        .xp::before {
-            content: ""; position: absolute; left: -1.75rem; top: 1.45rem;
-            width: 0.95rem; height: 0.95rem; border-radius: 50%;
-            background: var(--card); border: 3px solid var(--accent);
-        }
-        .xp-card {
-            background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-            padding: 1.4rem 1.6rem; box-shadow: 0 2px 10px rgba(20, 24, 50, 0.04);
-            transition: box-shadow .2s, transform .2s;
-        }
-        .xp-card:hover { box-shadow: 0 8px 24px rgba(20, 24, 50, 0.08); transform: translateY(-2px); }
-        .xp-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem; }
-        .xp-head h3 { margin: 0; font-size: 1.3rem; color: var(--ink); }
-        .xp-date {
-            font-size: 0.85rem; font-weight: 600; color: var(--accent);
-            background: var(--accent-soft); border-radius: 999px; padding: 0.15rem 0.7rem; white-space: nowrap;
-        }
-        .xp-org { color: var(--muted); font-weight: 600; margin: 0.3rem 0 0.8rem; }
-        .xp-org i { margin-right: 0.3rem; }
-        .xp-card ul { margin-bottom: 0.9rem; padding-left: 1.2rem; }
-        .xp-card li { margin-bottom: 0.35rem; }
-        .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .tag {
-            font-size: 0.78rem; font-weight: 600; color: var(--ink);
-            border: 1px solid var(--line); border-radius: 6px; padding: 0.15rem 0.55rem; background: #f7f8fc;
-        }
-
-        /* Media inside cards */
-        .media-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
-        .media-item { flex: 1 1 260px; }
-        .media-item img, .media-item video { width: 100%; border-radius: 8px; display: block; }
-        .media-caption { font-size: 0.82rem; color: var(--muted); margin-top: 0.35rem; }
-
-        /* Projects as a card grid */
-        .proj-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1.5rem; }
-        .proj-grid .xp-card h3 { font-size: 1.15rem; margin-bottom: 0; }
-        .proj-grid .xp-head { margin-bottom: 0.7rem; }
-        .proj-grid .xp-card.wide { grid-column: 1 / -1; }
-        .gallery { display: flex; gap: 0.75rem; margin-top: 1.2rem; align-items: flex-start; }
-        .gallery figure { min-width: 0; }
-        @media (max-width: 768px) { .gallery { flex-direction: column; } .gallery figure { flex: none !important; width: 100%; } }
-        .gallery figure { margin: 0; }
-        .proj-grid .gallery img { width: 100%; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #000; }
-        .gallery a { display: block; }
-        .proj-grid figure { margin: 0.8rem 0 0; }
-        .proj-grid figure img { width: 100%; max-width: 520px; border-radius: 8px; }
-        .proj-grid figcaption { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; }
-
-        @media (max-width: 576px) {
-            .xp-card { padding: 1.1rem 1.1rem; }
-            .timeline { padding-left: 1.4rem; }
-            .xp::before { left: -1.4rem; }
-        }
-    </style>
-
-    <!-- Bootstrap core JS-->
-    <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Markdown -->
-    <script type="text/javascript" src="static/js/marked.min.js"></script>
-
-    <!-- Mathematics -->
-    <script>
-        // See https://docs.mathjax.org/en/latest/index.html for more details.
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: false,
-                processEnvironments: true,
-                processRefs: true,
-                tags: 'all',
-                tagSide: 'right',
-                tagIndent: '0.8em',
-                useLabelIds: true
-            }
-        };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <!-- Core JS-->
-    <script type="text/javascript" src="static/js/scripts.js"></script>
-    <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
-
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    nav ul { gap: 16px; }
+    nav .brand { display: none; }
+    header.intro { padding: 48px 0 32px; }
+    .intro h1 { font-size: 32px; }
+    .media-2 { grid-template-columns: 1fr; }
+    .gallery { flex-direction: column; }
+    .gallery figure { flex: none !important; width: 100%; }
+  }
+</style>
 </head>
+<body>
 
-<body id="page-top">
-    <!-- Navigation-->
-    <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
-        <div class="container px-5">
-            <a id="page-top-title" class="navbar-brand fw-bold" href="#page-top"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                MENU
-                <i class="bi-list"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="#about">ABOUT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="#experience">EXPERIENCE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="#projects">PROJECTS</a>
-                    </li>
-                </ul>
-            </div>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Minghan Wei</a>
+    <ul>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="mailto:minghan.wei2017sk@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+<div class="wrap">
+
+  <header class="intro">
+    <h1>Minghan Wei<span class="cn">魏明涵</span></h1>
+    <div class="role">Electrical Engineering · University of Toronto</div>
+    <p>Currently a Hardware Digital Design Intern at <b>Ericsson</b>. I design and bring up hardware end to end: from schematic and PCB layout to signal-integrity validation, FPGA logic and analog/RF front ends.</p>
+    <div class="links">
+      <a href="mailto:minghan.wei2017sk@gmail.com">minghan.wei2017sk@gmail.com</a>
+      <a href="https://github.com/mikemajka" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="interests"><b>Interests:</b> ASIC design · Hardware design, prototyping &amp; testing · Analog &amp; digital signal processing</div>
+  </header>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry-head"><h3>Hardware Digital Design Intern</h3><span class="date">May 2026 – Present</span></div>
+      <div class="org">Ericsson Canada</div>
+      <ul>
+        <li>Brought up a PRBS loopback on a 16Gbps JESD204C link between RFIC and FPGA, tuning SERDES parameters through eye diagram analysis to minimize bit error rate</li>
+        <li>Integrated PMbus power-sequencing logic on FPGA, enable full digital control of point-of-load regulators</li>
+        <li>Analyzed PCB layout for current density (Cadence Sigrity PowerDC) and load transients to verify PDN margins</li>
+        <li>Benchmarked clock synthesizer ICs on phase jitter performance at 491.52 Mhz for telecom radio platforms</li>
+        <li>Designed and validated schematics/layout for telecom radio platforms in Cadence Allegro</li>
+      </ul>
+      <div class="tags"><span>DCDC POL Layout</span><span>Schematic design</span><span>Close-in Phase Noise</span><span>PDN analysis</span><span>Cadence Allegro</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><h3>Hardware Member</h3><span class="date">Sept 2024 – Present</span></div>
+      <div class="org">University of Toronto RoboSoccer</div>
+      <ul>
+        <li>Developed bare-metal and RTOS C firmware with CAN2.0, SPI, I2C and UART</li>
+        <li>Architected PCB of a humanoid robotics system for power delivering and commands/data telemetry</li>
+        <li>Designed power tree for 24 - 48V battery input converted to peripheral power rails with Buck POL converter, LDOs and kill switch functionality on 20+ QDD actuators consuming peak 600W</li>
+      </ul>
+      <div class="media-2">
+        <div class="stack">
+          <figure>
+            <a class="play" href="https://www.youtube.com/watch?v=bINm34lQ1Jg&t=6s" target="_blank" rel="noopener noreferrer"><img src="https://img.youtube.com/vi/bINm34lQ1Jg/maxresdefault.jpg" alt="2025 RoboCup qualifying video"></a>
+            <figcaption>2025 RoboCup qualifying video (opens on YouTube)</figcaption>
+          </figure>
+          <figure>
+            <a href="static/assets/img/rbnew.jpg" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/rbnew.jpg" alt="RoboSoccer power and communication PCB"></a>
+            <figcaption>Robot power and communication board, first fab</figcaption>
+          </figure>
         </div>
-    </nav>
+        <figure>
+          <video controls preload="metadata" poster="static/assets/img/roboleg-thumb.jpg"><source src="static/assets/video/roboleg.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+          <figcaption>2026 leg demonstration</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <b>WindBorne:</b> Powering 24 direct-drive motors is dangerous, especially at their peak power draw (4000 W+). Even with trained RL policies and firmware limits, the system remains challenging to manage safely, which is why an additional layer of purely analog current clamping is implemented. The voltage across a current-sense resistor is compared to a fixed 2.5 V reference. When it exceeds the reference, a monitor IC triggers the FET driver into a skip state that forces four power FETs into linear mode, clamping the current while signalling the MCU to shut the motors down. Because long linear-mode operation stresses the FETs, a complete shutoff is enforced if the condition lasts more than 5 ms, set by an RC timer.
+      </div>
+    </div>
+  </section>
 
-    <!-- Top Section -->
-    <section class="top-section" style="background-image: url('static/assets/img/background.jpg');">
-        <div class="top-section-content">
-            <div class="container px-5">
-                <h2 id="top-section-bg-text" class="text-white display-3 lh-1 font-alt"></h2>
-            </div>
-        </div>
-    </section>
-    <!-- Top Section -->
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects">
+    <h2>Projects</h2>
 
-    <!-- About -->
-    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="about">
-        <div class="container px-5">
-            <header>
-                <h2 id="about-subtitle">ABOUT</h2>
-            </header>
-            <div class="main-body" id="about-md"></div>
-        </div>
-    </section>
-    <!-- About -->
+    <div class="entry">
+      <div class="entry-head"><h3>SPI-to-4-CAN SoC</h3><span class="date">Sept 2026</span></div>
+      <div class="note"><b>Why?</b> This serves as an alternative to controlling SPI-to-CAN transceivers like the Microchip MCP2515, which are pin-hungry on the SPI master and require additional components.</div>
+      <ul>
+        <li>Designed an SoC bridging one SPI host to four CAN channels on a Lattice MachXO2 FPGA, built around a Wishibone bus controller and hardened SPI block</li>
+        <li>Implemented asynchronous FIFO buffers and CDC synchronizers in Verilog for high-throughput data transfer across clock domains</li>
+        <li>Placed and routed the design in Lattice Diamond and validated SPi transactions on hardware using oscilloscope</li>
+      </ul>
+      <div class="tags"><span>Verilog HDL</span><span>Lattice MachXO2</span><span>Wishbone</span><span>Async FIFO</span><span>CDC</span><span>SPI</span><span>CAN</span></div>
+      <div class="gallery">
+        <figure style="flex: 1.333 1 0"><a href="static/assets/img/spi2can-scope.jpg" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-scope.jpg" alt="Oscilloscope capture of decoded SPI MOSI and MISO frames"></a><figcaption>Bench capture: decoded SPI MOSI/MISO transactions into the bridge</figcaption></figure>
+        <figure style="flex: 2.044 1 0"><a href="static/assets/img/spi2can-route.png" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-route.png" alt="Routed physical view of the FPGA design"></a><figcaption>Post place-and-route physical view</figcaption></figure>
+        <figure style="flex: 2.049 1 0"><a href="static/assets/img/spi2can-floorplan.png" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-floorplan.png" alt="Floorplan view of the MachXO2 device"></a><figcaption>MachXO2 floorplan utilization</figcaption></figure>
+      </div>
+    </div>
 
-    <!-- Experience -->
-    <section class="bg-gradient-primary-to-secondary-dark mt5 md5" id="experience">
-        <div class="container px-5">
-            <header>
-                <h2 id="experience-subtitle"><i class="bi bi-briefcase-fill"></i> EXPERIENCE </h2>
-            </header>
-            <div class="main-body" id="experience-md"></div>
-        </div>
-    </section>
-    <!-- Experience -->
+    <div class="entry">
+      <div class="entry-head"><h3>65nm CMOS Operational Amplifier</h3><span class="date">Mar 2026</span></div>
+      <ul>
+        <li>Designed a fab-ready, DRC/LVS-clean two-stage op-amp in Cadence Virtuoso on the TSMC 65nm node.</li>
+        <li>Post-layout: 1.81 GHz (−3 dB) bandwidth, 66.2° phase margin and 17.6 dB gain margin at 86 µW.</li>
+      </ul>
+      <div class="tags"><span>Cadence Virtuoso</span><span>Analog IC</span><span>DRC/LVS</span></div>
+      <figure class="single"><a href="static/assets/img/or.jpeg" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/or.jpeg" alt="4-input OR layout"></a><figcaption>4-input OR layout</figcaption></figure>
+    </div>
 
-    <!-- Projects -->
-    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="projects">
-        <div class="container px-5">
-            <header>
-                <h2 id="projects-subtitle"><i class="bi bi-kanban-fill"></i> PROJECTS </h2>
-            </header>
-            <div class="main-body" id="projects-md"></div>
-        </div>
-    </section>
-    <!-- Projects -->
+    <div class="entry">
+      <div class="entry-head"><h3>3D Raycasting Engine on FPGA</h3><span class="date">Apr 2025</span></div>
+      <ul>
+        <li>Built a lightweight real-time raycasting engine in Verilog for the Altera DE1-SoC.</li>
+        <li>Implemented the 3D rendering algorithm with dynamic perspective movement and collision detection.</li>
+        <li>Integrated a PS/2 keyboard controller for input and the audio codec for in-game sound effects.</li>
+      </ul>
+    </div>
 
-    <!--
-        Note: the sections below are parsed as Markdown. HTML blocks must not contain
-        blank lines, otherwise Markdown treats the indented lines that follow as code.
-    -->
-
-    <script id="about-source" type="text/plain">
-[![GitHub](https://img.shields.io/badge/mikemajka-github-blue?logo=github)](https://github.com/mikemajka)
-
-Electrical and Computer Engineering undergraduate at the **University of Toronto**, currently a Hardware Digital Design Intern at **Ericsson Canada**. I design and bring up hardware end to end: from schematic and PCB layout to signal-integrity validation, FPGA logic and analog/RF front ends.
-
-
-#### Contact
-<code>minghan.wei2017sk@gmail.com</code>
-
-#### Interests
-- ASIC Design
-- Hardware Design, Prototyping & Testing
-- Analog & Digital Signal Processing
-    </script>
-
-    <script id="experience-source" type="text/plain">
-<div class="timeline">
-<div class="xp"><div class="xp-card">
-<div class="xp-head"><h3>Hardware Digital Design Intern</h3><span class="xp-date">May 2026 – Present</span></div>
-<div class="xp-org"><i class="bi bi-building"></i>Ericsson Canada</div>
-<ul>
-<li>Designed, updated and validated schematics for telecom radio platforms.</li>
-<li>Benchmarked clock synthesizer ICs on phase jitter performance at 491.52 MHz.</li>
-<li>Performed power rail analysis on PCB layout in Cadence, covering current density and load transients to meet PDN margins.</li>
-<li>Developed PRBS loopback on the JESD204C link between RFIC and FPGA, and tuned SerDes transceiver parameters through eye-diagram analysis to minimize bit error rate.</li>
-</ul>
-<div class="tags"><span class="tag">DCDC POL Layout</span><span class="tag">Schematic design</span><span class="tag">Close-in Phase Noise</span><span class="tag">PDN analysis</span><span class="tag">Cadence Allegro</span></div>
-</div></div>
-<div class="xp"><div class="xp-card">
-<div class="xp-head"><h3>Hardware Member</h3><span class="xp-date">Sept 2024 – Present</span></div>
-<div class="xp-org"><i class="bi bi-cpu"></i>University of Toronto RoboSoccer</div>
-<ul>
-<li>Architected the PCB of a humanoid robotics system for power delivery and command/data telemetry.</li>
-<li>Designed the power tree from a 24–48 V battery input to peripheral rails, using buck-converter POLs, LDOs and kill-switch functionality, for 20+ QDD actuators drawing up to 600 W peak.</li>
-<li>Configured CAN 2.0A/B for motor actuation, SPI for high-speed master–slave MCU synchronization, I²C for real-time IMU data acquisition, and UART for debugging.</li>
-</ul>
-<div class="media-row">
-<div class="media-item">
-<a href="https://www.youtube.com/watch?v=bINm34lQ1Jg&t=6s" target="_blank" rel="noopener noreferrer"><img src="https://img.youtube.com/vi/bINm34lQ1Jg/maxresdefault.jpg" alt="2025 RoboCup qualifying video"></a>
-<div class="media-caption">2025 RoboCup qualifying video (opens on YouTube)</div>
-<a href="static/assets/img/rbnew.jpg" target="_blank" rel="noopener noreferrer" style="display:block;margin-top:1rem"><img src="static/assets/img/rbnew.jpg" alt="Bare RoboSoccer power and communication PCB"></a>
-<div class="media-caption">Robot power and communication board, first fab</div>
-</div>
-<div class="media-item">
-<video controls poster="static/assets/img/roboleg-thumb.jpg"><source src="static/assets/video/roboleg.mp4" type="video/mp4">Your browser does not support the video tag.</video>
-<div class="media-caption">2026 leg demonstration</div>
+    <div class="entry">
+      <div class="entry-head"><h3>SDR Analog Front End</h3><span class="date">Apr 2025</span></div>
+      <ul>
+        <li>Designed the analog front end of a superheterodyne software-defined radio receiver from discrete components.</li>
+        <li>Built a band-pass filter, LNA, low-pass filter and BJT Gilbert-cell mixer for an 8–16 MHz LO, producing 44 kHz I/Q outputs.</li>
+      </ul>
+      <figure class="single"><a href="static/assets/img/background.jpg" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/background.jpg" alt="SDR PCB"></a><figcaption>First PCB revision</figcaption></figure>
+    </div>
+  </section>
 
 </div>
-<ul>
-<li><b>WindBorne</b>: Powering 24 Direct Drive motors is dangrous, espeically when considering their peak power consumption (4000W+). Even with trained RL policies and firmware limits, the system remains challenging to manage safely.
-    which is why an additional layer of pure analog clamping is implemented. Voltage read from a current sense resistor is compared to a solid 2.5V reference. When Vsense exceeds the reference, monitor IC trigers FET driver to enter
-    a skip state which forces 4 Power FETs into linear mode, effectively clamping the current while sending a signal to the MCU for motor shutdowon. While long linear mode operation stresses the FETs, a completely shutoff is enforced
-    if condition remains for more than 5 ms, set by a RC timer.
+</main>
 
-</li>
-</ul>
-
-</div>
-</div></div>
-</div>
-    </script>
-
-    <script id="projects-source" type="text/plain">
-<div class="proj-grid">
-<div class="xp-card wide">
-<div class="xp-head"><h3>SPI-to-4-CAN SoC</h3><span class="xp-date">Sept 2026</span></div>
-<ul>
-<li><i><p style="font-family:'Courier New'">Why? this will serve as an alternative to having control SPI-to-CAN transievers, like the Microchip MCP2515 which is quite pin demanding on the SPI Master and require additional components. </p></i></li>
-<li>Designed a custom SPI-to-CAN bridge SoC on a Lattice MachXO2 FPGA, built around a Wishbone bus controller, fanning one SPI host out to four 4 channels.</li>
-<li>Described asynchronous FIFO buffers and robust CDC synchronizers in Verilog to manage high-throughput data transfer between clock domains.</li>
-</ul>
-<div class="tags"><span class="tag">Verilog HDL</span><span class="tag">Lattice MachXO2</span><span class="tag">Wishbone</span><span class="tag">Async FIFO</span><span class="tag">CDC</span><span class="tag">SPI</span><span class="tag">CAN</span></div>
-<div class="gallery">
-<figure style="flex: 1.333 1 0"><a href="static/assets/img/spi2can-scope.jpg" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-scope.jpg" alt="Oscilloscope capture of decoded SPI MOSI and MISO frames"></a><figcaption>Bench capture: decoded SPI MOSI/MISO transactions into the bridge</figcaption></figure>
-<figure style="flex: 2.044 1 0"><a href="static/assets/img/spi2can-route.png" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-route.png" alt="Routed physical view of the FPGA design"></a><figcaption>Post place-and-route physical view</figcaption></figure>
-<figure style="flex: 2.049 1 0"><a href="static/assets/img/spi2can-floorplan.png" target="_blank" rel="noopener noreferrer"><img src="static/assets/img/spi2can-floorplan.png" alt="Floorplan view of the MachXO2 device"></a><figcaption>MachXO2 floorplan utilization</figcaption></figure>
-</div>
-</div>
-<div class="xp-card">
-<div class="xp-head"><h3>65nm CMOS Operational Amplifier</h3><span class="xp-date">Mar 2026</span></div>
-<ul>
-<li>Designed a fab-ready, DRC/LVS-clean two-stage op-amp in Cadence Virtuoso on the TSMC 65nm node.</li>
-<li>Post-layout: 1.81 GHz (−3 dB) bandwidth, 66.2° phase margin and 17.6 dB gain margin at 86 µW.</li>
-</ul>
-<div class="tags"><span class="tag">Cadence Virtuoso</span><span class="tag">Analog IC</span><span class="tag">DRC/LVS</span></div>
-<figure><img src="static/assets/img/or.jpeg" alt="Layout screenshot"><figcaption>4-input OR layout</figcaption></figure>
-</div>
-<div class="xp-card">
-<div class="xp-head"><h3>3D Raycasting Engine on FPGA</h3><span class="xp-date">Apr 2025</span></div>
-<ul>
-<li>Built a lightweight real-time raycasting engine in Verilog for the Altera DE1-SoC.</li>
-<li>Implemented the 3D rendering algorithm with dynamic perspective movement and collision detection.</li>
-<li>Integrated a PS/2 keyboard controller for input and the audio codec for in-game sound effects.</li>
-</ul>
-
-</div>
-<div class="xp-card">
-<div class="xp-head"><h3>SDR Analog Front End</h3><span class="xp-date">Apr 2025</span></div>
-<ul>
-<li>Designed the analog front end of a superheterodyne software-defined radio receiver from discrete components.</li>
-<li>Built a band-pass filter, LNA, low-pass filter and BJT Gilbert-cell mixer for an 8–16 MHz LO, producing 44 kHz I/Q outputs.</li>
-</ul>
-
-<figure><img src="static/assets/img/background.jpg" alt="SDR PCB"><figcaption>First PCB revision</figcaption></figure>
-</div>
-</div>
-    </script>
-
-    <!-- Footer-->
-    <footer class="bg-bottom text-center py-5">
-        <div class="container px-5">
-            <div class="text-white-50 small">
-                <div id="copyright-text" class="mb-2"></div>
-                <a id="github-link" href="https://github.com/mikemajka">Github</a>
-                <span class="mx-1">&middot;</span>
-                <a id="license-link"
-                    href="https://github.com/mikemajka/cvblog/blob/main/LICENSE">License</a>
-            </div>
-        </div>
-    </footer>
+<footer>
+  <div class="wrap">
+    <span>&copy; Minghan Wei 2023–2026</span>
+    <span><a href="https://github.com/mikemajka">GitHub</a> · <a href="https://github.com/mikemajka/cvblog/blob/main/LICENSE">License</a></span>
+  </div>
+</footer>
 
 </body>
-
 </html>
